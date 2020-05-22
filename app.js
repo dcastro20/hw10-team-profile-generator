@@ -74,7 +74,7 @@ function startApp() {
         {
           // ask for manager's office number
           type: "input",
-          name: "mgrOffice",
+          name: "mgrOfficeName",
           message: "Please enter your office number.",
           // validate user answer for number; return true or if false, return a message
           validate: function (value) {
@@ -92,7 +92,7 @@ function startApp() {
         console.log(answers);
         // create a manager variable to store new manager object created with the imported Manager class
         // initialize it with user answers for name, id, email, office number.
-        var mgr = new Manager(answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgofficeName);
+        var mgr = new Manager(answers.mgrName, answers.mgrId, answers.mgrEmail, answers.mgrOfficeName);
           // push newly created manager object to [your_team_members]
           teamMembers.push(mgr);
 
@@ -318,9 +318,9 @@ function startApp() {
 
     // call function 'render' passing [your_team_members] array as input argument
     // use the return value from render function as data to fs.writeFileSync function
-    render(teamMembers){
-      return fs.writeFileSync
-    }
+      fs.writeFile(outputPath, render(teamMembers), function (error){
+        console.log("Success!");
+       });
   }
 
   createEmpManager();
